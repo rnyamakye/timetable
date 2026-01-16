@@ -4,6 +4,7 @@ import "./App.css";
 function App() {
   const [hideContent, setHideContent] = useState(false);
   const [highlightReviews, setHighlightReviews] = useState(false);
+  const [showCoursesOnly, setShowCoursesOnly] = useState(false);
 
   const timeSlots = [
     { slot: "1", time: "6:00 - 6:55" },
@@ -149,7 +150,7 @@ function App() {
           (cell.course.includes("Review") ||
             cell.course.includes("Personal Project"));
         const shouldHide =
-          (highlightReviews && !isReviewOrPersonal) || hideContent;
+          (highlightReviews && !isReviewOrPersonal) || hideContent || (showCoursesOnly && isReviewOrPersonal);
         const className =
           highlightReviews && isReviewOrPersonal
             ? "course-cell highlight-review"
@@ -173,7 +174,7 @@ function App() {
           (cell.course.includes("Review") ||
             cell.course.includes("Personal Project"));
         const shouldHide =
-          (highlightReviews && !isReviewOrPersonal) || hideContent;
+          (highlightReviews && !isReviewOrPersonal) || hideContent || (showCoursesOnly && isReviewOrPersonal);
         const className =
           highlightReviews && isReviewOrPersonal
             ? "course-cell highlight-review"
@@ -227,16 +228,34 @@ function App() {
 
       <div className="toggle-container">
         <button
-          onClick={() => setHideContent(!hideContent)}
+          onClick={() => {
+            setHideContent(!hideContent);
+            setHighlightReviews(false);
+            setShowCoursesOnly(false);
+          }}
           className="toggle-button"
         >
           {hideContent ? "Show All" : "Show Free Periods"}
         </button>
         <button
-          onClick={() => setHighlightReviews(!highlightReviews)}
+          onClick={() => {
+            setHighlightReviews(!highlightReviews);
+            setHideContent(false);
+            setShowCoursesOnly(false);
+          }}
           className="toggle-button"
         >
           {highlightReviews ? "Remove Highlight" : "Highlight Reviews"}
+        </button>
+        <button
+          onClick={() => {
+            setShowCoursesOnly(!showCoursesOnly);
+            setHideContent(false);
+            setHighlightReviews(false);
+          }}
+          className="toggle-button"
+        >
+          {showCoursesOnly ? "Show All" : "Show Courses Only"}
         </button>
       </div>
     </div>
