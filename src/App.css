@@ -39,11 +39,19 @@
   color: #000;
 }
 
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 0.5rem;
+}
+
 .timetable {
   width: 100%;
+  min-width: 1200px;
   border-collapse: collapse;
   border: 2px solid #000;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
   table-layout: fixed;
 }
 
@@ -196,6 +204,7 @@
 @media (max-width: 1200px) {
   .timetable {
     font-size: 0.85rem;
+    min-width: 1100px;
   }
 
   .course-code {
@@ -209,12 +218,11 @@
 
 @media (max-width: 768px) {
   #root {
-    padding: 1rem;
+    padding: 0.5rem;
   }
 
   .timetable-container {
-    padding: 1rem;
-    overflow-x: auto;
+    padding: 0.5rem;
   }
 
   .header h1 {
@@ -223,6 +231,7 @@
 
   .timetable {
     font-size: 0.75rem;
+    min-width: 1000px;
   }
 
   .day-cell {
@@ -231,5 +240,15 @@
 
   .slot-number {
     font-size: 1rem;
+  }
+
+  .toggle-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .toggle-button {
+    width: 100%;
+    padding: 0.6rem 1rem;
   }
 }

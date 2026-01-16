@@ -204,7 +204,8 @@ function App() {
         <span className="header-subtitle">HC B.Sc. CompSci-3</span>
       </div>
 
-      <table className="timetable">
+      <div className="table-wrapper">
+        <table className="timetable">
         <thead>
           <tr>
             <th className="day-header"></th>
@@ -225,6 +226,7 @@ function App() {
           ))}
         </tbody>
       </table>
+      </div>
 
       <div className="toggle-container">
         <button
