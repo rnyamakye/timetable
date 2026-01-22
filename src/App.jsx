@@ -104,11 +104,12 @@ function App() {
     ],
     Fr: [
       { colspan: 3, course: "Personal Project" },
-      { empty: 1 },
-      { colspan: 2, course: "CSM 387 Review" },
+      { course: "ACF 255 Review" },
       { empty: 2 },
-      { colspan: 2, course: "ACF 255 Review" },
-      { colspan: 2, course: "CSM 393 Review" },
+      { colspan: 2, course: "ACF 255", room: "KSB", instructor: "B. OSEI" },
+      { empty: 2 },
+      { course: "CSM 393 Review" },
+      { course: "CSM 396 Review" },
       { empty: 3 },
     ],
     Sa: [
@@ -140,7 +141,7 @@ function App() {
               className={
                 hideContent ? "empty-cell highlight-free" : "empty-cell"
               }
-            ></td>
+            ></td>,
           );
           currentSlot++;
         }
@@ -150,7 +151,9 @@ function App() {
           (cell.course.includes("Review") ||
             cell.course.includes("Personal Project"));
         const shouldHide =
-          (highlightReviews && !isReviewOrPersonal) || hideContent || (showCoursesOnly && isReviewOrPersonal);
+          (highlightReviews && !isReviewOrPersonal) ||
+          hideContent ||
+          (showCoursesOnly && isReviewOrPersonal);
         const className =
           highlightReviews && isReviewOrPersonal
             ? "course-cell highlight-review"
@@ -165,7 +168,7 @@ function App() {
                 <div className="instructor">{cell.instructor}</div>
               </>
             )}
-          </td>
+          </td>,
         );
         currentSlot += cell.colspan;
       } else {
@@ -174,7 +177,9 @@ function App() {
           (cell.course.includes("Review") ||
             cell.course.includes("Personal Project"));
         const shouldHide =
-          (highlightReviews && !isReviewOrPersonal) || hideContent || (showCoursesOnly && isReviewOrPersonal);
+          (highlightReviews && !isReviewOrPersonal) ||
+          hideContent ||
+          (showCoursesOnly && isReviewOrPersonal);
         const className =
           highlightReviews && isReviewOrPersonal
             ? "course-cell highlight-review"
@@ -188,7 +193,7 @@ function App() {
                 <div className="instructor">{cell.instructor}</div>
               </>
             )}
-          </td>
+          </td>,
         );
         currentSlot++;
       }
@@ -206,26 +211,26 @@ function App() {
 
       <div className="table-wrapper">
         <table className="timetable">
-        <thead>
-          <tr>
-            <th className="day-header"></th>
-            {timeSlots.map((slot) => (
-              <th key={slot.slot} className="time-header">
-                <div className="slot-number">{slot.slot}</div>
-                <div className="slot-time">{slot.time}</div>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(timetableData).map(([day, cells]) => (
-            <tr key={day}>
-              <td className="day-cell">{day}</td>
-              {renderCell(cells)}
+          <thead>
+            <tr>
+              <th className="day-header"></th>
+              {timeSlots.map((slot) => (
+                <th key={slot.slot} className="time-header">
+                  <div className="slot-number">{slot.slot}</div>
+                  <div className="slot-time">{slot.time}</div>
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {Object.entries(timetableData).map(([day, cells]) => (
+              <tr key={day}>
+                <td className="day-cell">{day}</td>
+                {renderCell(cells)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <div className="toggle-container">
