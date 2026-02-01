@@ -44,7 +44,7 @@ function App() {
       },
       { empty: 2 },
       { course: "CSM 387 Review" },
-      { colspan: 2, course: "Personal Project" },
+      { colspan: 2, course: "CSM 395 Review" },
     ],
     Tu: [
       { colspan: 2, course: "CSM 357 Review" },
@@ -59,7 +59,12 @@ function App() {
       { empty: 2 },
       { course: "CSM 387", room: "BB-BLT", instructor: "D. ASAMOAH" },
       { course: "CSM 353", instructor: "B.T. Partey" },
-      { empty: 2 },
+      {
+        colspan: 2,
+        course: "CSM 395",
+        room: "Casely Hayford Room 202",
+        instructor: "O. Kornyő",
+      },
       { course: "CSM 353 Review" },
       { course: "CSM 387 Review" },
       { course: "CSM 357 Review" },
@@ -82,16 +87,11 @@ function App() {
     ],
     Th: [
       { colspan: 2, course: "ACF 255 Review" },
-      { colspan: 2, course: "CSM 395 Review" },
+      { colspan: 2, course: "Personal Project" },
       { course: "CSM 353 Review" },
       { empty: 1 },
       { colspan: 2, course: "ACF 255", room: "SCB-SF8", instructor: "B. OSEI" },
-      {
-        colspan: 2,
-        course: "CSM 395",
-        room: "Casely Hayford Room 202",
-        instructor: "O. Kornyő",
-      },
+      { empty: 2 },
       {
         colspan: 2,
         course: "CSM 353",
