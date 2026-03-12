@@ -109,24 +109,24 @@
   font-weight: bold;
   font-size: 1.05rem;
   margin-bottom: 0.2rem;
-  color: #000;
+  color: #fff;
 }
 
 .room-info {
   font-size: 0.7rem;
-  color: #000;
+  color: #fff;
   margin-bottom: 0.1rem;
 }
 
 .group-info {
   font-size: 0.7rem;
-  color: #000;
+  color: #fff;
   margin-bottom: 0.1rem;
 }
 
 .instructor {
   font-size: 0.7rem;
-  color: #000;
+  color: #fff;
 }
 
 .empty-cell {
@@ -142,15 +142,7 @@
 }
 
 .highlight-review {
-  background-color: rgba(255, 0, 0, 0.2) !important;
-  color: black !important;
-}
-
-.highlight-review .course-code,
-.highlight-review .room-info,
-.highlight-review .group-info,
-.highlight-review .instructor {
-  color: black !important;
+  opacity: 0.8 !important;
 }
 
 .toggle-container {
@@ -198,6 +190,43 @@
 
 .footer-right {
   text-align: right;
+}
+
+.course-key {
+  background-color: #ffccb3;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+.course-key h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.key-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.key-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: #000;
+}
+
+.key-color {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 
 /* Responsive adjustments */
@@ -250,5 +279,17 @@
   .toggle-button {
     width: 100%;
     padding: 0.6rem 1rem;
+  }
+
+  .key-items {
+    grid-template-columns: 1fr;
+  }
+
+  .course-key h3 {
+    font-size: 1.4rem;
+  }
+
+  .key-item {
+    font-size: 0.85rem;
   }
 }

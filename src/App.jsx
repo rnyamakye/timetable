@@ -6,6 +6,31 @@ function App() {
   const [highlightReviews, setHighlightReviews] = useState(false);
   const [showCoursesOnly, setShowCoursesOnly] = useState(false);
 
+  // Course color mapping
+  const getCourseColor = (courseName) => {
+    if (!courseName) return null;
+
+    // Check for Personal Project first
+    if (courseName.includes("Personal")) {
+      return "#000000";
+    }
+
+    // Extract course code (e.g., "CSM 399" from "CSM 399 Review")
+    const courseCode = courseName.split(" ").slice(0, 2).join(" ");
+
+    const colorMap = {
+      "CSM 399": "#1a7a7a",
+      "CSM 387": "#1a5c9c",
+      "CSM 357": "#d97928",
+      "CSM 395": "#6a4c93",
+      "CSM 393": "#c44569",
+      "CSM 353": "#a53a3a",
+      "ACF 255": "#9fb85e",
+    };
+
+    return colorMap[courseCode] || null;
+  };
+
   const timeSlots = [
     { slot: "1", time: "6:00 - 6:55" },
     { slot: "2", time: "7:00 - 7:55" },
@@ -70,7 +95,7 @@ function App() {
       { course: "CSM 357 Review" },
     ],
     We: [
-      { colspan: 3, course: "Personal Project" },
+      { colspan: 3, course: "Personal" },
       { empty: 1 },
       { colspan: 2, course: "CSM 399 Review" },
       { empty: 1 },
@@ -87,7 +112,7 @@ function App() {
     ],
     Th: [
       { colspan: 2, course: "ACF 255 Review" },
-      { colspan: 2, course: "Personal Project" },
+      { colspan: 2, course: "Personal" },
       { course: "CSM 353 Review" },
       { empty: 1 },
       { colspan: 2, course: "ACF 255", room: "SCB-SF8", instructor: "B. OSEI" },
@@ -103,7 +128,7 @@ function App() {
       { course: "ACF 255 Review" },
     ],
     Fr: [
-      { colspan: 3, course: "Personal Project" },
+      { colspan: 3, course: "Personal" },
       { course: "ACF 255 Review" },
       { empty: 2 },
       { colspan: 2, course: "ACF 255", room: "KSB", instructor: "B. OSEI" },
@@ -114,7 +139,7 @@ function App() {
     ],
     Sa: [
       { empty: 4 },
-      { colspan: 2, course: "Personal Project" },
+      { colspan: 2, course: "Personal" },
       { empty: 2 },
       { colspan: 2, course: "CSM 387 Review" },
       { colspan: 2, course: "ACF 255 Review" },
@@ -132,7 +157,7 @@ function App() {
     const result = [];
     let currentSlot = 0;
 
-    cells.forEach((cell, index) => {
+    cells.forEach((cell) => {
       if (cell.empty) {
         for (let i = 0; i < cell.empty; i++) {
           result.push(
@@ -148,8 +173,7 @@ function App() {
       } else if (cell.colspan) {
         const isReviewOrPersonal =
           cell.course &&
-          (cell.course.includes("Review") ||
-            cell.course.includes("Personal Project"));
+          (cell.course.includes("Review") || cell.course.includes("Personal"));
         const shouldHide =
           (highlightReviews && !isReviewOrPersonal) ||
           hideContent ||
@@ -158,8 +182,15 @@ function App() {
           highlightReviews && isReviewOrPersonal
             ? "course-cell highlight-review"
             : "course-cell";
+        const bgColor = getCourseColor(cell.course);
+        const cellStyle = bgColor ? { backgroundColor: bgColor } : {};
         result.push(
-          <td key={currentSlot} colSpan={cell.colspan} className={className}>
+          <td
+            key={currentSlot}
+            colSpan={cell.colspan}
+            className={className}
+            style={cellStyle}
+          >
             {!shouldHide && (
               <>
                 {cell.room && <div className="room-info">{cell.room}</div>}
@@ -184,8 +215,10 @@ function App() {
           highlightReviews && isReviewOrPersonal
             ? "course-cell highlight-review"
             : "course-cell";
+        const bgColor = getCourseColor(cell.course);
+        const cellStyle = bgColor ? { backgroundColor: bgColor } : {};
         result.push(
-          <td key={currentSlot} className={className}>
+          <td key={currentSlot} className={className} style={cellStyle}>
             {!shouldHide && (
               <>
                 {cell.room && <div className="room-info">{cell.room}</div>}
@@ -231,6 +264,68 @@ function App() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="course-key">
+        <h3>Course Key</h3>
+        <div className="key-items">
+          <div className="key-item">
+            <span
+              className="key-color"
+              style={{ backgroundColor: "#1a7a7a" }}
+            ></span>
+            <span>CSM 399: WEB-BASED CONCEPTS AND DEVELOPMENT (2)</span>
+          </div>
+          <div className="key-item">
+            <span
+              className="key-color"
+              style={{ backgroundColor: "#1a5c9c" }}
+            ></span>
+            <span>CSM 387: DATA STRUCTURES I (3)</span>
+          </div>
+          <div className="key-item">
+            <span
+              className="key-color"
+              style={{ backgroundColor: "#d97928" }}
+            ></span>
+            <span>CSM 357: HUMAN COMPUTER INTERACTION (2)</span>
+          </div>
+          <div className="key-item">
+            <span
+              className="key-color"
+              style={{ backgroundColor: "#6a4c93" }}
+            ></span>
+            <span>CSM 395: INTRODUCTION TO ARTIFICIAL INTELLIGENCE (2)</span>
+          </div>
+          <div className="key-item">
+            <span
+              className="key-color"
+              style={{ backgroundColor: "#885d8f" }}
+            ></span>
+            <span>CSM 395: INTRODUCTION TO ARTIFICIAL INTELLIGENCE (2)</span>
+          </div>
+          <div className="key-item">
+            <span
+              className="key-color"
+              style={{ backgroundColor: "#c44569" }}
+            ></span>
+            <span>CSM 393: OPERATIONS RESEARCH I (2)</span>
+          </div>
+          <div className="key-item">
+            <span
+              className="key-color"
+              style={{ backgroundColor: "#a53a3a" }}
+            ></span>
+            <span>CSM 353: SURVEY OF PROGRAMMING LANGUAGES (3)</span>
+          </div>
+          <div className="key-item">
+            <span
+              className="key-color"
+              style={{ backgroundColor: "#9fb85e" }}
+            ></span>
+            <span>ACF 255: FINANCIAL ACCOUNTING I (2)</span>
+          </div>
+        </div>
       </div>
 
       <div className="toggle-container">
