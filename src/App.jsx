@@ -47,6 +47,8 @@ function App() {
     { slot: "13", time: "7:00 - 7:55" },
     { slot: "14", time: "8:00 - 8:55" },
     { slot: "15", time: "9:00 - 9:55" },
+    { slot: "16", time: "10:00 - 10:55" },
+    { slot: "17", time: "11:00 - 11:55" },
   ];
 
   const timetableData = {
@@ -70,6 +72,7 @@ function App() {
       { empty: 2 },
       { course: "CSM 387 Review" },
       { colspan: 2, course: "CSM 395 Review" },
+      { colspan: 2, course: "Personal" },
     ],
     Tu: [
       { colspan: 2, course: "CSM 357 Review" },
@@ -93,6 +96,7 @@ function App() {
       { course: "CSM 353 Review" },
       { course: "CSM 387 Review" },
       { course: "CSM 357 Review" },
+      { colspan: 2, course: "Personal" },
     ],
     We: [
       { colspan: 3, course: "Personal" },
@@ -109,6 +113,7 @@ function App() {
       },
       { empty: 2 },
       { course: "CSM 393 Review" },
+      { colspan: 2, course: "Personal" },
     ],
     Th: [
       { colspan: 2, course: "ACF 255 Review" },
@@ -126,6 +131,7 @@ function App() {
       { empty: 1 },
       { course: "CSM 395 Review" },
       { course: "ACF 255 Review" },
+      { colspan: 2, course: "Personal" },
     ],
     Fr: [
       { colspan: 3, course: "Personal" },
@@ -136,6 +142,7 @@ function App() {
       { course: "CSM 393 Review" },
       { course: "CSM 396 Review" },
       { empty: 3 },
+      { colspan: 2, course: "Personal" },
     ],
     Sa: [
       { empty: 4 },
@@ -145,11 +152,13 @@ function App() {
       { colspan: 2, course: "ACF 255 Review" },
       { empty: 1 },
       { colspan: 2, course: "CSM 393 Review" },
+      { colspan: 2, course: "Personal" },
     ],
     Su: [
       { empty: 12 },
       { course: "CSM 387 Review" },
       { colspan: 2, course: "CSM 399 Review" },
+      { colspan: 2, course: "Personal" },
     ],
   };
 
